@@ -1,7 +1,5 @@
 FROM python:3
 
-FROM base as builder
-
 # get packages
 WORKDIR /app_frontend
 COPY requirements.txt requirements.txt
