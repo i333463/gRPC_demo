@@ -57,7 +57,30 @@ Set up the project
       And in the Docker file, expose the 5000 port as well.
       Mapping the port 8080 of host ---> port 5000 of container
       
+      -d background
+      -p port mapping
       
+      Command:  $ docker ps
+      
+      Result
+      -------------------------------------------------------------------------
+      CONTAINER ID    IMAGE           COMMAND              CREATED             STATUS              PORTS                    NAMES
+      cc3d4df9f7af  c39028007fc7        "python /app_fronten…"   47 seconds ago      Up 45 seconds       0.0.0.0:8080->5000/tcp   nifty_darwin
+      
+   4. Build the image for service 'register'
+   
+      Command:  $ cd gRPC_demo/src/register
+      Command:  $ docker build -f Dockerfile 
+      
+      Successfully built d8c201353144
+      
+   5. Run this image as the container.
+   
+      Command:  $ docker run -d -p 50051:50051 d8c201353144
+      
+   6. Organize the containers and network
+   
+   
       
   
      
