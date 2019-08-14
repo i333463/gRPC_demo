@@ -1,5 +1,6 @@
 from __future__ import print_function
 import functools
+import os
 from flask import Blueprint
 from flask import flash
 from flask import g
@@ -42,6 +43,8 @@ def register():
     password = request.form["password"]
     password_confirm = request.form["password_confirm"]
     error = None
+    host=os.environ.get()
+    print (os.environ)
 
     if not user_id:
       error = "User ID is required."
@@ -60,7 +63,7 @@ def register():
       # the name is available, store it in the database and go to
       # the login page
 
-      with grpc.insecure_channel('localhost:50051') as channel:
+      with grpc.insecure_channel('register:50051') as channel:
           stub = easyshop_pb2_grpc.AccountServiceStub(channel)
           response = stub.register(easyshop_pb2.RegisterRequest(user_id=user_id, user_name=user_name, password=password, password_confirm=password_confirm))
 
