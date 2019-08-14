@@ -43,8 +43,8 @@ def register():
     password = request.form["password"]
     password_confirm = request.form["password_confirm"]
     error = None
-    host=os.environ.get()
-    print (os.environ)
+    # host=os.environ.get()
+    # print (os.environ)
 
     if not user_id:
       error = "User ID is required."
