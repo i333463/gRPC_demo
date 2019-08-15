@@ -81,6 +81,9 @@ Set up the project
   
   How to handle the communication between 2 containers, this step is to link this two containers via an network. We can use docker network command to achieve this.
   
+  Use command:   $ docker ps 
+  List all of containers, then replace below container1 & container2 with your real container id.
+  
       Command:  $ docker network create testnet
                 $ docker network connect testnet container1 --alias frontend
                 $ docker network connect testnet container2 --alias register
