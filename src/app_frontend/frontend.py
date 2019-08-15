@@ -57,7 +57,7 @@ def register():
     elif (
       password != password_confirm
     ):
-      error = "User {0} is already registered.".format(user_name)
+      error = "The password is not confirmed"
 
     if error is None:
       # the name is available, store it in the database and go to
@@ -67,7 +67,10 @@ def register():
           stub = easyshop_pb2_grpc.AccountServiceStub(channel)
           response = stub.register(easyshop_pb2.RegisterRequest(user_id=user_id, user_name=user_name, password=password, password_confirm=password_confirm))
 
+      flash('Register successfully, please login')
+
       return redirect(url_for("frontend.login"))
+
 
     flash(error)
 
