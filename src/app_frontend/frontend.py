@@ -59,6 +59,7 @@ def register():
     ):
       error = "The password is not confirmed"
 
+
     if error is None:
       # the name is available, store it in the database and go to
       # the login page
