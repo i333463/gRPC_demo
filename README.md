@@ -107,7 +107,7 @@ Option 2 : Set up the project
      In the frontend service, when a register request was recieved, it will be forward to backend service "register" that runing in the container2, this communication was done by a channel provided by gRPC client API, the channel should contains a available <hostname:port> format address.
      The contaniners that running in the same docker network, it's possible to use alias instead of <hostname>.
      
-   7.Test
+  7. Test
   ------------------------------------------------------------------------------
  
    Goto <Your-hostname:8080>, and click register. 
