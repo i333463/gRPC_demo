@@ -6,8 +6,23 @@ This prject contains 2 micro services, communicating with gRPC.
   1. frontend -- a http server to forward a httpRequest to corresponding backend service
   2. register -- the backend service to handle Register
   
-Set up the project
-------------------------
+  
+Option 1 : Run with existing images
+-----------------------------------
+
+    $ docker run -d -p <your-port>:5000 ericwudocker01/grpc:frontend   # frontend service
+    $ docker run -d -p <your-port>:50051 ericwudocker01/grpc:register  #register
+    
+    $ docker network create grpc  # creaet a network
+
+    $ docker ps # list containers to use in below command
+
+    $ docker network connect grpc <frontend_container> --alias frontend
+    $ docker network connect grpc <register_container> --alias register
+
+
+Option 2 : Set up the project
+----------------------------
 
   1. Clone this repo to your local
   ------------------------------------------------------------------------------
@@ -92,7 +107,7 @@ Set up the project
      In the frontend service, when a register request was recieved, it will be forward to backend service "register" that runing in the container2, this communication was done by a channel provided by gRPC client API, the channel should contains a available <hostname:port> format address.
      The contaniners that running in the same docker network, it's possible to use alias instead of <hostname>.
      
-   7.Test
+  7. Test
   ------------------------------------------------------------------------------
  
    Goto <Your-hostname:8080>, and click register. 
