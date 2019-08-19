@@ -57,7 +57,7 @@ def register():
     elif (
       password != password_confirm
     ):
-      error = "The password is not confirmed"
+      error = "The password is not confirmed."
 
 
     if error is None:
