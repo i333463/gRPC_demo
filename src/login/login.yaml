@@ -27,7 +27,7 @@ spec:
         app: login
     spec:
       containers:
-        - name: login
+        - name: server
           image: ericwudocker01/grpc:login
           ports:
           - name: http
