@@ -22,16 +22,42 @@ def load_logged_in_user():
     """If a user id is stored in the session, load the user object from
     the database into ``g.user``."""
     user_id = session.get("user_id")
-    user_name = session.get("user_name")
 
     if user_id is None:
         g.user = None
     else:
-        g.user.user_id = user_id
-        g.user.user_name = user_name
+        g.user = {
+            "user_id": user_id,
+            "user_name": session.get("user_name")
+        }
 
 @bp.route("/login", methods=("GET", "POST"))
 def login():
+  if request.method == "POST":
+    user_id = request.form["user_id"]
+    password = request.form["password"]
+
+    error = None
+
+    if not user_id:
+      error = "User ID is required."
+    elif not password:
+      error = "Password is required."
+
+    if error is None:
+      with grpc.insecure_channel('login:50052') as channel:
+          stub = easyshop_pb2_grpc.AccountServiceStub(channel)
+          response = stub.login(easyshop_pb2.LoginRequest(user_id=user_id, password=password))
+
+      session.clear()
+      session["user_id"] = user_id
+      session["user_name"] = response.user_name
+
+      flash('Login successfully')
+
+      return redirect(url_for("home"))
+
+    flash(error)
 
   return render_template("frontend/login.html")
 
@@ -76,3 +102,10 @@ def register():
     flash(error)
 
   return render_template("frontend/register.html")
+
+@bp.route("/logout", methods=("GET", "POST"))
+def logout():
+    """Clear the current session, including the stored user id."""
+    session.clear()
+    flash('Logout successfully')
+    return redirect(url_for("home"))
