@@ -5,13 +5,21 @@ easy micro services with gRPC communication
 This prject contains 2 micro services, communicating with gRPC.
   1. frontend -- a http server to forward a httpRequest to corresponding backend service
   2. register -- the backend service to handle Register
+  3. login    -- the backend service to handle Login
   
   
 Option 1 : Run with existing images
 -----------------------------------
+    The repo of docker hub is: ericwudocker01/grpc
+    
+    Tags: 
+      frontend  # image of Frontend
+      register  # image of Register
+      login     # image of Login
 
-    $ docker run -d -p <your-port>:5000 ericwudocker01/grpc:frontend   # frontend service
-    $ docker run -d -p <your-port>:50051 ericwudocker01/grpc:register  #register
+    $ docker run -d -p <your-port>:5000 ericwudocker01/grpc:frontend
+    $ docker run -d -p <your-port>:50051 ericwudocker01/grpc:register
+    $ docker run -d -p <your-port>:50052 ericwudocker01/grpc:login
     
     $ docker network create grpc  # creaet a network
 
@@ -19,6 +27,7 @@ Option 1 : Run with existing images
 
     $ docker network connect grpc <frontend_container> --alias frontend
     $ docker network connect grpc <register_container> --alias register
+    $ docker network connect grpc <login_container>    --alias login
 
 
 Option 2 : Set up the project
