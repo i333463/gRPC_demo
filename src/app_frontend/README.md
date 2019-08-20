@@ -37,11 +37,9 @@ Run it anywhere after it was pushed into a repo.
     -- -d background run
     -- -p mapping a port of your host to 5000, 5000 is the port that is listening by frontend service
 
-Run all deployment and service in K8s
+Run it in K8s
 ----------------------------------------------------------------------------------------------------------
     $ kubectl apply -f frontend.yaml
-    $ kubectl apply -f register.yaml
-    $ kubectl apply -f login.yaml
 
     
   

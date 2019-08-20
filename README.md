@@ -119,7 +119,13 @@ Option 2 : Set up the project
   7. Test
   ------------------------------------------------------------------------------
  
-   Goto <Your-hostname:8080>, and click register. 
+   Goto <Your-hostname:8080>, and click register.
+
+  8 Deploy application to K8s
+----------------------------------------------------------------------------------------------------------
+    $ kubectl apply -f frontend.yaml
+    $ kubectl apply -f register.yaml
+    $ kubectl apply -f login.yaml
  
      
    
