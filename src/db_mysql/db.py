@@ -1,15 +1,15 @@
 import mysql.connector
 
-config = {
-    'user': 'root',
-    'password': 'helloworld01',
-    'host': 'db',
-    'port': '3306',
-    'database': 'grpc'
-}
+
 
 def get_connection():
-
+  config = {
+        'user': 'root',
+        'password': 'helloworld01',
+        'host': 'db',
+        'port': '3306',
+        'database': 'grpc'
+    }
   return mysql.connector.connect(**config)
 
 def select_user_by_user_id(conn, user_id):
