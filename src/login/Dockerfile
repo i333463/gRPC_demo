@@ -1,7 +1,7 @@
 FROM python:3
 
 # get packages
-WORKDIR /register
+WORKDIR /login
 COPY requirements.txt requirements.txt
 RUN pip install -r requirements.txt
 
