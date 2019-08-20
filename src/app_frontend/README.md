@@ -36,6 +36,13 @@ Run it anywhere after it was pushed into a repo.
     $ docker run -d -p <your-port>:5000 <dockerhub_username>/<repo>:<tagname> # run the image
     -- -d background run
     -- -p mapping a port of your host to 5000, 5000 is the port that is listening by frontend service
+
+Run all deployment and service in K8s
+----------------------------------------------------------------------------------------------------------
+    $ kubectl apply -f frontend.yaml
+    $ kubectl apply -f register.yaml
+    $ kubectl apply -f login.yaml
+
     
   
 
