@@ -56,11 +56,11 @@ spec:
 #              httpHeaders:
 #              - name: "Cookie"
 #                value: "shop_session-id=x-liveness-probe"
-          env:
-          - name: PORT
-            value: "50052"
-          - name: LOGIN_SERVICE_ADDR
-            value: "login:50052"
+#          env:
+#          - name: PORT
+#            value: "50052"
+#          - name: LOGIN_SERVICE_ADDR
+#            value: "login:50052"
 #          resources:
 #            requests:
 #              cpu: 100m
@@ -79,6 +79,6 @@ spec:
     app: login
   ports:
   - name: http
-    port: 5680
+    port: 50052
     targetPort: 50052
 ---

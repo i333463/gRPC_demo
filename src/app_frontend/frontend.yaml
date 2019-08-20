@@ -92,5 +92,5 @@ spec:
     app: frontend1
   ports:
   - name: http
-    port: 5678
+    port: 1233
     targetPort: 5000

@@ -56,11 +56,11 @@ spec:
 #              httpHeaders:
 #              - name: "Cookie"
 #                value: "shop_session-id=x-liveness-probe"
-          env:
-          - name: PORT
-            value: "50051"
-          - name: REGISTER_SERVICE_ADDR
-            value: "register:50051"
+#          env:
+#          - name: PORT
+#            value: "50051"
+#          - name: REGISTER_SERVICE_ADDR
+#            value: "register:50051"
 #          resources:
 #            requests:
 #              cpu: 100m
@@ -79,6 +79,6 @@ spec:
     app: register
   ports:
   - name: http
-    port: 5679
+    port: 50051
     targetPort: 50051
 ---

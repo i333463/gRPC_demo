@@ -45,7 +45,7 @@ def login():
       error = "Password is required."
 
     if error is None:
-      with grpc.insecure_channel('login:5680') as channel:
+      with grpc.insecure_channel('login:50052') as channel:
           stub = easyshop_pb2_grpc.AccountServiceStub(channel)
           response = stub.login(easyshop_pb2.LoginRequest(user_id=user_id, password=password))
 
@@ -90,7 +90,7 @@ def register():
       # the name is available, store it in the database and go to
       # the login page
 
-      with grpc.insecure_channel('register:5679') as channel:
+      with grpc.insecure_channel('register:50051') as channel:
           stub = easyshop_pb2_grpc.AccountServiceStub(channel)
           response = stub.register(easyshop_pb2.RegisterRequest(user_id=user_id, user_name=user_name, password=password, password_confirm=password_confirm))
 
