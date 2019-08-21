@@ -43,7 +43,7 @@ def create_user(conn, user_id, user_name, password):
 
     cursor.execute(insert_user, (user_id, user_name, password))
 
-    cursor.commit()
+    conn.commit()
     cursor.close()
 
 
