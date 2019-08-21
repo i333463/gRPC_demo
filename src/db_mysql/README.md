@@ -5,8 +5,10 @@ contains:
   3. app.py
  
 these services were composed by a docker-compose file.
-Dockerfile is for building the app
-init.sql is for initializing the db, create a DB and a Table
+
+Dockerfile is for building the app.
+
+init.sql is for initializing the db, create a DB and a Table.
 
 
 # How to test in PWD
