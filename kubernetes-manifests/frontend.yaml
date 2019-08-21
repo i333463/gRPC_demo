@@ -61,6 +61,8 @@ spec:
             value: "5000"
           - name: REGISTER_SERVICE_ADDR
             value: "register:50051"
+          - name: LOGIN_SERVICE_ADDR
+            value: "login:50052"
 #          resources:
 #            requests:
 #              cpu: 100m
