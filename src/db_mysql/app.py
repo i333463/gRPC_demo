@@ -16,7 +16,7 @@ def index() -> str:
         "password": "123456"
     }
 
-    db.create_user(conn, user)
+    db.create_user(conn, **user)
 
     select_user = db.select_user_by_user_id(conn, '1333463')
 
