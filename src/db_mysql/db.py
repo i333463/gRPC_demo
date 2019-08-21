@@ -12,22 +12,20 @@ def get_connection():
     }
   return mysql.connector.connect(**config)
 
-def select_user_by_user_id(conn, user_id):
+def select_user_by_user_id(conn, id):
 
     cursor = conn.cursor(buffered=True)
 
-    query = (
-        "SELECT user_id, user_name FROM user"
-        "WHERE user_id = %s")
+    query = ("SELECT u.user_id, u.user_name FROM user AS u WHERE user_id = %s")
 
-    cursor.execute(query, (user_id))
+    cursor.execute(query, (id,))
 
     user = None
-    for (id, name) in cursor:
+    for (user_id, user_name) in cursor:
 
       user : {
-          "user_id": id,
-          "user_name": name
+          "user_id": user_id,
+          "user_name": user_name
       }
     cursor.close()
 

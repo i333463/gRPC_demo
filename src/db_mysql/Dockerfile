@@ -10,4 +10,4 @@ COPY . .
 
 EXPOSE 3000
 
-ENTRYPOINT ["python", "/db_mysql/test_db.py"]
+ENTRYPOINT ["python", "/db_mysql/app.py"]
