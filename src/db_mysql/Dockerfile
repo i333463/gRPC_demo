@@ -8,6 +8,6 @@ RUN pip install -r requirements.txt
 # add files into working directory
 COPY . .
 
-EXPOSE 3000
+EXPOSE 5000
 
 ENTRYPOINT ["python", "/db_mysql/app.py"]
