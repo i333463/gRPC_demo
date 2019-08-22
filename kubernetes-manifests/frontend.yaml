@@ -46,16 +46,16 @@ spec:
 #                value: "shop_session-id=x-readiness-probe"
           livenessProbe:
             initialDelaySeconds: 10
-            exec:
-              command:
-              - cat
-              - /app_frontend/templates/home.html
-#            httpGet:
-#              path: /healthz
-#              port: 5000
-#              httpHeaders:
-#              - name: "Cookie"
-#                value: "shop_session-id=x-liveness-probe"
+#            exec:
+#              command:
+#              - cat
+#              - /app_frontend/templates/home.html
+            httpGet:
+              path: /healthz
+              port: 5000
+              httpHeaders:
+              - name: "Cookie"
+                value: "shop_session-id=x-liveness-probe"
           env:
           - name: PORT
             value: "5000"
