@@ -9,7 +9,6 @@ from flask import render_template
 from flask import request
 from flask import session
 from flask import url_for
-from flask import jsonify
 
 import grpc
 
@@ -110,10 +109,3 @@ def logout():
     session.clear()
     flash('Logout successfully')
     return redirect(url_for("home"))
-
-@bp.route("/healthz", methods=("GET", "POST"))
-def healthz():
-    """Return K8s Liveness check."""
-    resp = jsonify(success=True)
-    resp.status_code = 200
-    return resp

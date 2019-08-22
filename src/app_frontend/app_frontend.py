@@ -2,6 +2,7 @@ import os
 
 from flask import Flask
 from flask import render_template
+from flask import jsonify
 
 
 def create_app(test_config=None):
@@ -42,6 +43,13 @@ def create_app(test_config=None):
     app.add_url_rule("/", endpoint="home")
 
     return app
+
+    @app.route("/healthz", methods=("GET", "POST"))
+    def healthz():
+        """Return K8s Liveness check."""
+        resp = jsonify(success=True)
+        resp.status_code = 200
+        return resp
 
 if __name__ == '__main__':
     create_app().run('0.0.0.0','5000')
