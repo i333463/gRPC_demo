@@ -8,7 +8,8 @@ def get_connection():
         'password': 'helloworld01',
         'host': 'db',
         'port': '3306',
-        'database': 'grpc'
+        'database': 'grpc',
+        'auth_plugin': 'mysql_native_password'
     }
   return mysql.connector.connect(**config)
 
