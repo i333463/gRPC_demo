@@ -35,27 +35,11 @@ spec:
           readinessProbe:
             initialDelaySeconds: 10
             exec:
-              command:
-              - cat
-              - /register/requirements.txt
-#            httpGet:
-#              path: /healthz
-#              port: 5000
-#              httpHeaders:
-#              - name: "Cookie"
-#                value: "shop_session-id=x-readiness-probe"
+              command: ["/bin/grpc_health_probe", "-addr=:50051"]
           livenessProbe:
             initialDelaySeconds: 10
             exec:
-              command:
-              - cat
-              - /register/requirements.txt
-#            httpGet:
-#              path: /healthz
-#              port: 5000
-#              httpHeaders:
-#              - name: "Cookie"
-#                value: "shop_session-id=x-liveness-probe"
+              command: ["/bin/grpc_health_probe", "-addr=:50051"]
 #          env:
 #          - name: PORT
 #            value: "50051"
