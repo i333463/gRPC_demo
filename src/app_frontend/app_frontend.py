@@ -32,6 +32,13 @@ def create_app(test_config=None):
     def home():
         return render_template("home.html")
 
+    @app.route("/healthz", methods=("GET", "POST"))
+    def healthz():
+        """Return K8s Liveness check."""
+        resp = jsonify(success=True)
+        resp.status_code = 200
+        return resp
+
     # apply the blueprints to the app
     import frontend as frontend
     app.register_blueprint(frontend.bp)
@@ -43,13 +50,6 @@ def create_app(test_config=None):
     app.add_url_rule("/", endpoint="home")
 
     return app
-
-    @app.route("/healthz", methods=("GET", "POST"))
-    def healthz():
-        """Return K8s Liveness check."""
-        resp = jsonify(success=True)
-        resp.status_code = 200
-        return resp
 
 if __name__ == '__main__':
     create_app().run('0.0.0.0','5000')
