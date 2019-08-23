@@ -7,6 +7,8 @@ import db as db
 
 from genproto import easyshop_pb2
 from genproto import easyshop_pb2_grpc
+from grpc_health.v1 import health_pb2
+from grpc_health.v1 import health_pb2_grpc
 
 _ONE_DAY_IN_SECONDS = 60 * 60 * 24
 
@@ -24,6 +26,10 @@ class AccountService(easyshop_pb2_grpc.AccountServiceServicer):
 
         return response
 
+    def Check(self, request, context):
+        return health_pb2.HealthCheckResponse(
+            status=health_pb2.HealthCheckResponse.SERVING)
+
     # def exist(self, request, context):
     #     return easyshop_pb2.Success_or_not(success_or_not='sudcess')
     #
@@ -37,6 +43,7 @@ class AccountService(easyshop_pb2_grpc.AccountServiceServicer):
 def serve():
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
     easyshop_pb2_grpc.add_AccountServiceServicer_to_server(AccountService(), server)
+    health_pb2_grpc.add_HealthServicer_to_server(AccountService(), server)
     server.add_insecure_port('[::]:50051')
     server.start()
     try:
