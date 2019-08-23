@@ -19,7 +19,7 @@ class AccountService(easyshop_pb2_grpc.AccountServiceServicer):
         conn = db.get_connection()
         user_name = db.select_user_by_user_id(conn, request.user_id)
 
-        if user_name == None:
+        if user_name == '':
             db.create_user(db.get_connection(), request.user_id, request.user_name, request.password)
             response.user_id = request.user_id
             response.password = request.password
