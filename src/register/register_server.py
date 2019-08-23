@@ -3,6 +3,7 @@ import logging
 import time
 
 import grpc
+import db as db
 
 from genproto import easyshop_pb2
 from genproto import easyshop_pb2_grpc
@@ -11,9 +12,16 @@ _ONE_DAY_IN_SECONDS = 60 * 60 * 24
 
 class AccountService(easyshop_pb2_grpc.AccountServiceServicer):
     def register(self, request, context):
+
         response = easyshop_pb2.RegisterResponse()
-        response.user_id = request.user_id
-        response.password = request.password
+        conn = db.get_connection()
+        user_name = db.select_user_by_user_id(conn, request.user_id)
+
+        if user_name == None:
+            db.create_user(db.get_connection(), request.user_id, request.user_name, request.password)
+            response.user_id = request.user_id
+            response.password = request.password
+
         return response
 
     # def exist(self, request, context):
