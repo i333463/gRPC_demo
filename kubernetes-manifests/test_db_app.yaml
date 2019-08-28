@@ -10,6 +10,7 @@ spec:
   ports:
   - port: 3307
     name: web
+    targetPort: 5000
   selector:
     app: testapp
 ---
