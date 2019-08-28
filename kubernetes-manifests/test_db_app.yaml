@@ -1,0 +1,51 @@
+# declaration of a headless service
+apiVersion: v1
+kind: Service
+metadata:
+  name: testapp
+  labels:
+    app: testapp
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 3307
+    name: web
+  selector:
+    app: testapp
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: testapp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: testapp
+  template:
+    metadata:
+      labels:
+        app: testapp
+    spec:
+      containers:
+        - name: server
+          image: ericwudocker01/db:testapp
+          ports:
+          - name: http
+            containerPort: 5000
+          readinessProbe:
+            initialDelaySeconds: 10
+            httpGet:
+              path: /healthz
+              port: 5000
+              httpHeaders:
+              - name: "Cookie"
+                value: "shop_session-id=x-readiness-probe"
+          livenessProbe:
+            initialDelaySeconds: 10
+            httpGet:
+              path: /healthz
+              port: 5000
+              httpHeaders:
+              - name: "Cookie"
+                value: "shop_session-id=x-liveness-probe"
